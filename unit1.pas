@@ -23,6 +23,7 @@ type
     procedure Timer1Timer(Sender: TObject);
   private
     State: Integer;
+    Speed: Integer;
   public
 
   end;
@@ -55,6 +56,7 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   State := 0;
+  Speed := 7;
 end;
 
 procedure TForm1.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -66,6 +68,8 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
+  if (State = 1) then Image1.Left := Image1.Left + Speed;
+  if (Image1.Left > Form1.Width) then Image1.Left := -Image1.Width;
   if (Image1.ImageIndex-1 >= 0) then
   begin
      Image1.ImageIndex := Image1.ImageIndex - 1;
