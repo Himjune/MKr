@@ -1,0 +1,6 @@
+
+backup/*
+lib/*
+backup/project1.lpi
+backup/project1.lps
+*.exe
