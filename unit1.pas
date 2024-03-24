@@ -16,10 +16,13 @@ type
     ImageList1: TImageList;
     ImageList2: TImageList;
     Timer1: TTimer;
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Image1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
   private
-
+    State: Integer;
   public
 
   end;
@@ -36,6 +39,29 @@ implementation
 procedure TForm1.Image1Click(Sender: TObject);
 begin
 
+end;
+
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+  if (State <> 1) then
+  begin
+     State := 1;    
+     Image1.Images := ImageList2;
+     Image1.ImageIndex := Image1.Images.Count-1;
+  end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  State := 0;
+end;
+
+procedure TForm1.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
+       State := 0;
+       Image1.Images := ImageList1;
+       Image1.ImageIndex := Image1.Images.Count-1;
 end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
